@@ -1,9 +1,9 @@
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/electricity/ \
+  --root_path /media/media01/mhzheng/dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_96 \
   --model Autoformer \
@@ -23,7 +23,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/electricity/ \
+  --root_path /media/media01/mhzheng/dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_192 \
   --model Autoformer \
@@ -43,7 +43,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/electricity/ \
+  --root_path /media/media01/mhzheng/dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_336 \
   --model Autoformer \
@@ -63,7 +63,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/electricity/ \
+  --root_path /media/media01/mhzheng/dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_720 \
   --model Autoformer \

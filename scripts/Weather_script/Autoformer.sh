@@ -3,7 +3,7 @@ export CUDA_VISIBLE_DEVICES=1
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/weather/ \
+  --root_path /media/media01/mhzheng/dataset/weather/ \
   --data_path weather.csv \
   --model_id weather_96_96 \
   --model Autoformer \
@@ -24,7 +24,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/weather/ \
+  --root_path /media/media01/mhzheng/dataset/weather/ \
   --data_path weather.csv \
   --model_id weather_96_192 \
   --model Autoformer \
@@ -44,7 +44,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/weather/ \
+  --root_path /media/media01/mhzheng/dataset/weather/ \
   --data_path weather.csv \
   --model_id weather_96_336 \
   --model Autoformer \
@@ -64,7 +64,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/weather/ \
+  --root_path /media/media01/mhzheng/dataset/weather/ \
   --data_path weather.csv \
   --model_id weather_96_720 \
   --model Autoformer \

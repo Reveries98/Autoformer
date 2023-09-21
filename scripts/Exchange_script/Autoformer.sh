@@ -1,9 +1,9 @@
-export CUDA_VISIBLE_DEVICES=4
+export CUDA_VISIBLE_DEVICES=0
 
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
+  --root_path /media/media01/mhzheng/dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
   --model_id Exchange_96_96 \
   --model Autoformer \
@@ -23,7 +23,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
+  --root_path /media/media01/mhzheng/dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
   --model_id Exchange_96_192 \
   --model Autoformer \
@@ -44,7 +44,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
+  --root_path /media/media01/mhzheng/dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
   --model_id Exchange_96_336 \
   --model Autoformer \
@@ -65,7 +65,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
+  --root_path /media/media01/mhzheng/dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
   --model_id Exchange_96_720 \
   --model Autoformer \

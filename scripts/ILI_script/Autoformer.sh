@@ -2,7 +2,7 @@ export CUDA_VISIBLE_DEVICES=1
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/illness/ \
+  --root_path /media/media01/mhzheng/dataset/illness/ \
   --data_path national_illness.csv \
   --model_id ili_36_24 \
   --model Autoformer \
@@ -22,7 +22,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/illness/ \
+  --root_path /media/media01/mhzheng/dataset/illness/ \
   --data_path national_illness.csv \
   --model_id ili_36_36 \
   --model Autoformer \
@@ -42,7 +42,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/illness/ \
+  --root_path /media/media01/mhzheng/dataset/illness/ \
   --data_path national_illness.csv \
   --model_id ili_36_48 \
   --model Autoformer \
@@ -62,7 +62,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/illness/ \
+  --root_path /media/media01/mhzheng/dataset/illness/ \
   --data_path national_illness.csv \
   --model_id ili_36_60 \
   --model Autoformer \

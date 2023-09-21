@@ -1,8 +1,8 @@
-export CUDA_VISIBLE_DEVICES=6
+export CUDA_VISIBLE_DEVICES=0
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/traffic/ \
+  --root_path /media/media01/mhzheng/dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_96 \
   --model Autoformer \
@@ -23,7 +23,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/traffic/ \
+  --root_path /media/media01/mhzheng/dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_192 \
   --model Autoformer \
@@ -44,7 +44,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/traffic/ \
+  --root_path /media/media01/mhzheng/dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_336 \
   --model Autoformer \
@@ -65,7 +65,7 @@ python -u run.py \
 
 python -u run.py \
   --is_training 1 \
-  --root_path ./dataset/traffic/ \
+  --root_path /media/media01/mhzheng/dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_720 \
   --model Autoformer \
