@@ -72,7 +72,7 @@ class StandardScaler():
         return (data * self.std) + self.mean
 
 
-def visual(true, preds=None, name='./pic/test.pdf'):
+def visual(true, preds=None,season=None,trend=None, name='./pic/test.pdf'):
     """
     Results visualization
     """
@@ -80,5 +80,11 @@ def visual(true, preds=None, name='./pic/test.pdf'):
     plt.plot(true, label='GroundTruth', linewidth=2)
     if preds is not None:
         plt.plot(preds, label='Prediction', linewidth=2)
+    x =range(len(true)-len(season),len(true))
+    
+    if season is not None:
+        plt.plot(x,season, label='Season', linewidth=2)
+    if trend is not None:
+        plt.plot(x,trend, label='Trend', linewidth=2)
     plt.legend()
     plt.savefig(name, bbox_inches='tight')

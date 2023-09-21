@@ -62,20 +62,27 @@ class Exp_Main(Exp_Basic):
         def _run_model():
             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
             if self.args.output_attention:
-                outputs = outputs[0]
-            return outputs
+                season = outputs[2]
+                trend = outputs[3]
+            else:
+                season = outputs[1]
+                trend = outputs[2]
+            outputs = outputs[0]
+            return outputs,season,trend
 
         if self.args.use_amp:
             with torch.cuda.amp.autocast():
-                outputs = _run_model()
+                outputs,season,trend = _run_model()
         else:
-            outputs = _run_model()
+            outputs,season,trend = _run_model()
 
         f_dim = -1 if self.args.features == 'MS' else 0
         outputs = outputs[:, -self.args.pred_len:, f_dim:]
         batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+        season = season[:, -self.args.pred_len:, f_dim:]
+        trend = trend[:, -self.args.pred_len:, f_dim:]
 
-        return outputs, batch_y
+        return outputs, batch_y,season,trend
 
     def vali(self, vali_data, vali_loader, criterion):
         total_loss = []
@@ -88,7 +95,7 @@ class Exp_Main(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
 
-                outputs, batch_y = self._predict(batch_x, batch_y, batch_x_mark, batch_y_mark)
+                outputs, batch_y,_,_ = self._predict(batch_x, batch_y, batch_x_mark, batch_y_mark)
 
                 pred = outputs.detach().cpu()
                 true = batch_y.detach().cpu()
@@ -135,7 +142,7 @@ class Exp_Main(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
 
-                outputs, batch_y = self._predict(batch_x, batch_y, batch_x_mark, batch_y_mark)
+                outputs, batch_y,_,_ = self._predict(batch_x, batch_y, batch_x_mark, batch_y_mark)
 
                 loss = criterion(outputs, batch_y)
                 train_loss.append(loss.item())
@@ -196,11 +203,11 @@ class Exp_Main(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
 
-                outputs, batch_y = self._predict(batch_x, batch_y, batch_x_mark, batch_y_mark)
+                outputs, batch_y,season,trend = self._predict(batch_x, batch_y, batch_x_mark, batch_y_mark)
 
                 outputs = outputs.detach().cpu().numpy()
                 batch_y = batch_y.detach().cpu().numpy()
-
+                season,trend = season.detach().cpu().numpy(),trend.detach().cpu().numpy()
                 pred = outputs  # outputs.detach().cpu().numpy()  # .squeeze()
                 true = batch_y  # batch_y.detach().cpu().numpy()  # .squeeze()
 
@@ -208,9 +215,11 @@ class Exp_Main(Exp_Basic):
                 trues.append(true)
                 if i % 20 == 0:
                     input = batch_x.detach().cpu().numpy()
+                    season = season[0,:,-1]
+                    trend = trend[0,:,-1]
                     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
-                    visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
+                    visual(gt, pd,season,trend, os.path.join(folder_path, str(i) + '.pdf'))
 
         preds = np.concatenate(preds, axis=0)
         trues = np.concatenate(trues, axis=0)
